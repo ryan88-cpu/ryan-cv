@@ -1,17 +1,35 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 const Education = () => {
+
+  const [edu, setEdu] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const eduRef = ref(db, "edu");
+
+
+    setLoading(true);
+    onValue(eduRef, (snapshot) => {
+      const data = snapshot.val();
+      setEdu(data);
+      setLoading(false);
+    });
+
+  }, []);
   return (
-    <section id="experience-education" className="py-5 bg-light">
+    <section id="education" className="py-5 bg-light">
       <div className="container">
-        <h2 className="text-center">Pengalaman & Pendidikan</h2>
+        <h2 className="text-center">Pendidikan</h2>
         <div className="row">
           {/* Experience Section */}
           <div className="col-md-6">
             <div className="card mb-4">
               <div className="card-body">
-                <h5 className="card-title">Pengalaman 1</h5>
+                <h5 className="card-title">Sekolah Menengah Pertama</h5>
                 <p className="card-text">
-                  Deskripsi singkat tentang pengalaman kerja atau proyek yang
-                  relevan.
+                  {edu.edu1}
                 </p>
               </div>
             </div>
@@ -21,21 +39,23 @@ const Education = () => {
           <div className="col-md-6">
             <div className="card mb-4">
               <div className="card-body">
-                <h5 className="card-title">Pendidikan 1</h5>
+                <h5 className="card-title">Sekolah Menengah Atas</h5>
                 <p className="card-text">
-                  Deskripsi singkat tentang latar belakang pendidikan Anda.
+                 {edu.edu2}
                 </p>
               </div>
             </div>
           </div>
+
+          <h2 className="text-center">Pengalaman</h2>
 
           {/* Additional Experience or Education */}
           <div className="col-md-6">
             <div className="card mb-4">
               <div className="card-body">
-                <h5 className="card-title">Pengalaman 2</h5>
+                <h5 className="card-title">Sport</h5>
                 <p className="card-text">
-                  Deskripsi singkat pengalaman kerja atau proyek yang lainnya.
+                  {edu.exp1}
                 </p>
               </div>
             </div>
@@ -44,10 +64,9 @@ const Education = () => {
           <div className="col-md-6">
             <div className="card mb-4">
               <div className="card-body">
-                <h5 className="card-title">Pendidikan 2</h5>
+                <h5 className="card-title">Music</h5>
                 <p className="card-text">
-                  Deskripsi singkat tentang pendidikan lanjutan atau kursus
-                  terkait.
+                  {edu.exp2}
                 </p>
               </div>
             </div>

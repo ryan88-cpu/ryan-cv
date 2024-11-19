@@ -148,8 +148,8 @@ body {
 }
 
 .hero-content .profile-img {
-  width: 150px; /* Set the size of the profile image */
-  height: 150px;
+  width: 250px; /* Set the size of the profile image */
+  height: 250px;
   border-radius: 50%; /* Make the image circular */
   margin-bottom: 20px; /* Space between the image and text */
   object-fit: cover;
@@ -261,6 +261,10 @@ body {
 
 .card-body {
   padding: 20px;
+}
+
+.card-body-sport{
+  background-image: "./img/image.png";
 }
 
 .card-title {
